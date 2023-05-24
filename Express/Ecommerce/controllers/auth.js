@@ -1,7 +1,7 @@
-const User = require("../models/user");
-const { check, body, validationResult } = require("express-validator");
-var jwt = require("jsonwebtoken");
-var expressJwt = require("express-jwt");
+const User = require('../models/user');
+const { check, body, validationResult } = require('express-validator');
+var jwt = require('jsonwebtoken');
+var expressJwt = require('express-jwt');
 // const read = require("body-parser/lib/read");
 
 exports.signup = (req, res) => {
@@ -18,11 +18,11 @@ exports.signup = (req, res) => {
     });
   }
 
-  const user  = new User(req.body);
+  const user = new User(req.body);
   user.save((error, user) => {
     if (error) {
       return res.status(400).json({
-        error: "Unable to Save user in the DB",
+        error: 'Unable to Save user in the DB',
       });
     }
 
@@ -50,13 +50,13 @@ exports.signin = (req, res) => {
   User.findOne({ email }, (error, user) => {
     if (error || !user) {
       res.status(400).json({
-        error: "User Email does not exists",
+        error: 'User Email does not exists',
       });
     }
 
     if (!user.autheticate(password)) {
       return res.status(401).json({
-        error: "Email & Password do not match",
+        error: 'Email & Password do not match',
       });
     }
 
@@ -64,7 +64,7 @@ exports.signin = (req, res) => {
     var token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
     // Put token into cookie
-    res.cookie("token", token, { expire: new Date() + 9999 });
+    res.cookie('token', token, { expire: new Date() + 9999 });
 
     // Sending Response to the front end
 
@@ -75,17 +75,17 @@ exports.signin = (req, res) => {
 };
 
 exports.signout = (req, res) => {
-  res.clearCookie("token"); // Clear the cookier whose name is Token
+  res.clearCookie('token'); // Clear the cookier whose name is Token
   res.json({
-    user: "User Signout Successfully",
+    user: 'User Signout Successfully',
   });
 };
 
 // Protected Routes
 exports.isSignedIn = expressJwt({
   secret: process.env.SECRET,
-  algorithms: ["HS256"],
-  userProperty: "auth", //This auth contents _id of the user
+  algorithms: ['HS256'],
+  userProperty: 'auth', //This auth contents _id of the user
 });
 
 //  Custom Middlwares
@@ -93,7 +93,7 @@ exports.isAuthenticated = (req, res, next) => {
   let checker = req.profile && req.auth && req.auth._id == req.profile._id;
   if (!checker) {
     return res.status(403).json({
-      error: "ACCESS DENIED",
+      error: 'ACCESS DENIED',
     });
   }
 
@@ -103,7 +103,7 @@ exports.isAuthenticated = (req, res, next) => {
 exports.isAdmin = (req, res, next) => {
   if (req.profile.role === 0) {
     return res.status(403).json({
-      error: "You are NOT ADMIN, ACCESS DENIED",
+      error: 'You are NOT ADMIN, ACCESS DENIED',
     });
   }
   next();
