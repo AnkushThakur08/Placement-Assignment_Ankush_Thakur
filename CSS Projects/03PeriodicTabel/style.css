@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.main__table-red {
+  background-color: #ff9999;
+  border: 1px solid #212121;
+  padding: 0.5rem 1rem;
+}
+
+.main__table-yellow {
+  background-color: #fffe8d;
+  border: 1px solid #212121;
+  padding: 0.5rem 1rem;
+}
+
+.main__table-blue {
+  background-color: #93ccff;
+  border: 1px solid #212121;
+  padding: 0.5rem 1rem;
+}
+
+.main__table-green {
+  background-color: #97fe9a;
+  border: 1px solid #212121;
+  padding: 0.5rem 1rem;
+  margin-top: 2rem;
+}
+
+.main__table-head div p,
+.main__table-head,
+.main__table-numcol {
+  text-align: center;
+  font-size: 1rem;
+}
