@@ -3,6 +3,15 @@ import './App.css';
 
 const App = () => {
   const [count, setCount] = useState(0);
+
+  const decreaseCounter = () => {
+    if (count > 0) {
+      return setCount(count - 1);
+    } else {
+      alert("Number Can't be Negitive");
+      return count;
+    }
+  };
   return (
     <>
       <div class="container">
@@ -12,7 +21,7 @@ const App = () => {
           <h1>Counter Value is: {count}</h1>
 
           <button onClick={() => setCount(count + 1)}>Increase Counter</button>
-          <button onClick={() => setCount(count > 0 ? count - 1 : count)}>Decrease Counter</button>
+          <button onClick={() => decreaseCounter()}>Decrease Counter</button>
           <button onClick={() => setCount(0)}>Reset Counter</button>
         </main>
       </div>
