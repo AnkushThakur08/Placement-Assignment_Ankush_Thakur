@@ -1,0 +1,42 @@
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 18px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #bdbaba;
+}
+
+.operator {
+  background-color: #ff6347;
+  color: white;
+}
+
+.operator:hover {
+  background-color: #cd513b;
+  color: white;
+}
